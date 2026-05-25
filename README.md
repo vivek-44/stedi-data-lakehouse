@@ -215,6 +215,7 @@ step_trainer_trusted	14460
 machine_learning_curated	43681
 ________________________________________
 S3 Folder Structure
+
 customer/landing/
 customer/trusted/
 customer/curated/
