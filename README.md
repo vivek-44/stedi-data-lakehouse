@@ -306,19 +306,19 @@ Final Row Counts
 
 Table	                        Row Count
 
-customer_landing	        956
+customer_landing	             956
 
 accelerometer_landing	        81273
 
-step_trainer_landing	        28680
+step_trainer_landing	         28680
 
-customer_trusted	        482
+customer_trusted	             482
 
 accelerometer_trusted	        40981
 
-customers_curated	        482
+customers_curated	            482
 
-step_trainer_trusted	        14460
+step_trainer_trusted	         14460
 
 machine_learning_curated	43681
 
