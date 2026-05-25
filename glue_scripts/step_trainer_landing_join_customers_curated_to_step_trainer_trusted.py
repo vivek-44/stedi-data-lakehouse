@@ -27,10 +27,10 @@ DEFAULT_DATA_QUALITY_RULESET = """
 """
 
 # Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1779688653415 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="step_trainer_landing", transformation_ctx="AWSGlueDataCatalog_node1779688653415")
-
-# Script generated for node AWS Glue Data Catalog
 AWSGlueDataCatalog_node1779688673549 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customers_curated", transformation_ctx="AWSGlueDataCatalog_node1779688673549")
+
+# Script generated for node Amazon S3
+AmazonS3_node1779710226879 = glueContext.create_dynamic_frame.from_options(format_options={"multiLine": "false"}, connection_type="s3", format="json", connection_options={"paths": ["s3://stedi-project-vivek/step_trainer/landing/"], "recurse": True}, transformation_ctx="AmazonS3_node1779710226879")
 
 # Script generated for node SQL Query
 SqlQuery0 = '''
@@ -39,7 +39,7 @@ FROM step_trainer_landing s
 INNER JOIN customer_curated c
 ON s.serialnumber=c.serialnumber;
 '''
-SQLQuery_node1779688703585 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"step_trainer_landing":AWSGlueDataCatalog_node1779688653415, "customer_curated":AWSGlueDataCatalog_node1779688673549}, transformation_ctx = "SQLQuery_node1779688703585")
+SQLQuery_node1779688703585 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"step_trainer_landing":AmazonS3_node1779710226879, "customer_curated":AWSGlueDataCatalog_node1779688673549}, transformation_ctx = "SQLQuery_node1779688703585")
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=SQLQuery_node1779688703585, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1779688183642", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
