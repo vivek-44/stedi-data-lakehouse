@@ -100,9 +100,13 @@ ________________________________________
 3. Step Trainer Dataset
 Source: STEDI IoT motion sensors
 Fields
+
 •	sensorreadingtime
+
 •	serialnumber
+
 •	distancefromobject
+
 Landing Table
 step_trainer_landing
 Total Rows
@@ -112,9 +116,13 @@ ________________________________________
 Landing Zone
 The landing zone stores raw JSON data exactly as received from the source systems.
 Landing Tables
+
 •	customer_landing
+
 •	accelerometer_landing
+
 •	step_trainer_landing
+
 Athena external tables were manually created for all landing datasets.
 ________________________________________
 Trusted Zone
@@ -190,16 +198,27 @@ This ensures GDPR-style privacy compliance and proper handling of protected cust
 ________________________________________
 Glue Jobs Implemented
 The following AWS Glue jobs were created:
+
 •	customer_landing_to_trusted.py
+
 •	accelerometer_landing_to_trusted.py
+
 •	customer_trusted_to_curated.py
+
 •	step_trainer_trusted.py
+
 •	machine_learning_curated.py
+
 All Glue jobs were implemented using:
+
 •	AWS Glue Studio
+
 •	Visual ETL
+
 •	SQL Query transformation nodes
+
 •	PySpark
+
 ________________________________________
 # Athena Validation
 Athena queries were used after every ETL stage to validate row counts and data quality.
@@ -222,30 +241,46 @@ customer/landing/
 customer/trusted/
 customer/curated/
 
+
 accelerometer/landing/
 accelerometer/trusted/
+
 
 step_trainer/landing/
 step_trainer/trusted/
 
+
 machine_learning_curated/
 
+
 athena-results/
+
 ________________________________________
 # Project Outcome
 A complete AWS-based data lakehouse solution was successfully implemented for STEDI Human Balance Analytics.
 The final machine-learning-ready dataset was created by:
 
 •	ingesting raw IoT and accelerometer data
+
 •	filtering customer data using privacy rules
+
 •	transforming datasets through ETL pipelines
+
 •	validating outputs using Athena
 
+
 The project demonstrates practical experience with:
+
 •	cloud data engineering
+
 •	AWS analytics services
+
 •	ETL pipeline development
+
 •	PySpark
+
 •	data lakehouse architecture
+
 •	privacy-aware data processing
+
 ________________________________________
