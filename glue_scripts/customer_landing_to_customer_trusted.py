@@ -26,16 +26,17 @@ DEFAULT_DATA_QUALITY_RULESET = """
     ]
 """
 
-# Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1779689475685 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customer_landing", transformation_ctx="AWSGlueDataCatalog_node1779689475685")
+# Script generated for node Amazon S3
+AmazonS3_node1779706695958 = glueContext.create_dynamic_frame.from_options(format_options={"multiLine": "false"}, connection_type="s3", format="json", connection_options={"paths": ["s3://stedi-project-vivek/customer/landing/"], "recurse": True}, transformation_ctx="AmazonS3_node1779706695958")
 
 # Script generated for node SQL Query
 SqlQuery0 = '''
-select * from myDataSource
-where sharewithresearchasofdate IS NOT NULL;
+SELECT DISTINCT *
+FROM myDataSource
+WHERE sharewithresearchasofdate IS NOT NULL
 
 '''
-SQLQuery_node1779689492583 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":AWSGlueDataCatalog_node1779689475685}, transformation_ctx = "SQLQuery_node1779689492583")
+SQLQuery_node1779689492583 = sparkSqlQuery(glueContext, query = SqlQuery0, mapping = {"myDataSource":AmazonS3_node1779706695958}, transformation_ctx = "SQLQuery_node1779689492583")
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=SQLQuery_node1779689492583, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1779688183642", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
