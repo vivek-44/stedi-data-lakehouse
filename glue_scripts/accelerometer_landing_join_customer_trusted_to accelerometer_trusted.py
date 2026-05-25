@@ -21,13 +21,13 @@ DEFAULT_DATA_QUALITY_RULESET = """
 """
 
 # Script generated for node AWS Glue Data Catalog
-AWSGlueDataCatalog_node1779687645377 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="accelerometer_landing", transformation_ctx="AWSGlueDataCatalog_node1779687645377")
-
-# Script generated for node AWS Glue Data Catalog
 AWSGlueDataCatalog_node1779687659233 = glueContext.create_dynamic_frame.from_catalog(database="stedi", table_name="customer_trusted", transformation_ctx="AWSGlueDataCatalog_node1779687659233")
 
+# Script generated for node Amazon S3
+AmazonS3_node1779709700782 = glueContext.create_dynamic_frame.from_options(format_options={"multiLine": "false"}, connection_type="s3", format="json", connection_options={"paths": ["s3://stedi-project-vivek/accelerometer/landing/"], "recurse": True}, transformation_ctx="AmazonS3_node1779709700782")
+
 # Script generated for node Join
-Join_node1779687716826 = Join.apply(frame1=AWSGlueDataCatalog_node1779687645377, frame2=AWSGlueDataCatalog_node1779687659233, keys1=["user"], keys2=["email"], transformation_ctx="Join_node1779687716826")
+Join_node1779687716826 = Join.apply(frame1=AWSGlueDataCatalog_node1779687659233, frame2=AmazonS3_node1779709700782, keys1=["email"], keys2=["user"], transformation_ctx="Join_node1779687716826")
 
 # Script generated for node Amazon S3
 EvaluateDataQuality().process_rows(frame=Join_node1779687716826, ruleset=DEFAULT_DATA_QUALITY_RULESET, publishing_options={"dataQualityEvaluationContext": "EvaluateDataQuality_node1779687628216", "enableDataQualityResultsPublishing": True}, additional_options={"dataQualityResultsPublishing.strategy": "BEST_EFFORT", "observations.scope": "ALL"})
