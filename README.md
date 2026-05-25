@@ -201,20 +201,22 @@ All Glue jobs were implemented using:
 •	SQL Query transformation nodes
 •	PySpark
 ________________________________________
-Athena Validation
+# Athena Validation
 Athena queries were used after every ETL stage to validate row counts and data quality.
+
 Final Row Counts
-Table	Row Count
-customer_landing	956
-accelerometer_landing	81273
-step_trainer_landing	28680
-customer_trusted	482
-accelerometer_trusted	40981
-customers_curated	482
-step_trainer_trusted	14460
+
+Table	                   Row Count
+customer_landing	   956
+accelerometer_landing	   81273
+step_trainer_landing	   28680
+customer_trusted	   482
+accelerometer_trusted	   40981
+customers_curated	   482
+step_trainer_trusted	   14460
 machine_learning_curated	43681
 ________________________________________
-S3 Folder Structure
+# S3 Folder Structure
 
 customer/landing/
 customer/trusted/
@@ -230,13 +232,15 @@ machine_learning_curated/
 
 athena-results/
 ________________________________________
-Project Outcome
+# Project Outcome
 A complete AWS-based data lakehouse solution was successfully implemented for STEDI Human Balance Analytics.
 The final machine-learning-ready dataset was created by:
+
 •	ingesting raw IoT and accelerometer data
 •	filtering customer data using privacy rules
 •	transforming datasets through ETL pipelines
 •	validating outputs using Athena
+
 The project demonstrates practical experience with:
 •	cloud data engineering
 •	AWS analytics services
